@@ -5,6 +5,7 @@ export default function SearchBar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    alert(`return api call with "${song}" as a query result.`);
   };
 
   const handleOnChange = ({ target }) => {

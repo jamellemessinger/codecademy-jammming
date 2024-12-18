@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './css/App.module.css';
-import { SearchBar, TrackList, SearchResults } from './components';
+import { SearchBar, SearchResults, TrackList, Track, Playlist } from './components';
 
 function App() {
   return (
