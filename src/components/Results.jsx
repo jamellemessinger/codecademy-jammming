@@ -1,19 +1,20 @@
 import React from 'react';
 import Track from './Track';
-import tracks from '../assets/data/exampleData';
 
-export default function Results() {
+export default function Results({ results }) {
   return (
     <>
       <p>Results</p>
-      {tracks.map((track, index) => (
-        <Track
-          key={index}
-          songTitle={track.songTitle}
-          artist={track.artist}
-          album={track.album}
-        />
-      ))}
+      {results
+        ? results.map((obj, index) => (
+            <Track
+              key={index}
+              songTitle={obj.songTitle}
+              artist={obj.artist}
+              album={obj.album}
+            />
+          ))
+        : undefined}
     </>
   );
 }

@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 
-export default function SearchBar({ onSearchSong }) {
-  const [song, setSong] = useState('');
+export default function SearchBar({ onSearch }) {
+  const [searchValue, setSearchValue] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSearchSong(song);
+    onSearch(searchValue);
+    setSearchValue('');
   };
 
   const handleOnChange = ({ target }) => {
-    setSong(target.value);
+    setSearchValue(target.value);
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input onChange={handleOnChange} type="text" value={song} />
-        <button type="submit">Search</button>
+        <input onChange={handleOnChange} type="text" value={searchValue} />
+        <button>Search</button>
       </form>
     </>
   );
