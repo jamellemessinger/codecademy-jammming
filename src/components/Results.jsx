@@ -5,7 +5,7 @@ export default function Results({ results }) {
   return (
     <>
       <p>Results</p>
-      {results
+      {results[0]
         ? results.map((obj, index) => (
             <Track
               key={index}
@@ -14,7 +14,7 @@ export default function Results({ results }) {
               album={obj.album}
             />
           ))
-        : undefined}
+        : <p>NO RESULTS FOUND</p>}
     </>
   );
 }
