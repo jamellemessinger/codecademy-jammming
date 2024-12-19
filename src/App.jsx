@@ -1,15 +1,23 @@
 import React from 'react';
 import styles from './css/App.module.css';
-import { SearchBar, SearchResults, TrackList, Track, Playlist } from './components';
+import {
+  SearchBar,
+  Results,
+  Track,
+  Playlist,
+} from './components';
 
 function App() {
+  const SearchSong = (song) => {
+    alert(`received ${song} from SearchBar component`);
+  };
   return (
     <>
       <h1>Jammming</h1>
-      <SearchBar />
+      <SearchBar onSearchSong={SearchSong} />
       <div>
-        <SearchResults />
-        <TrackList />
+        <Results />
+        <Playlist />
       </div>
     </>
   );

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-export default function SearchBar() {
+export default function SearchBar({ onSearchSong }) {
   const [song, setSong] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`return api call with "${song}" as a query result.`);
+    onSearchSong(song);
   };
 
   const handleOnChange = ({ target }) => {
