@@ -5,6 +5,7 @@ export default function Track({
   songTitle,
   artist,
   album,
+  uri,
   addToPlaylist,
   removeFromPlaylist,
   inPlaylist,
@@ -15,6 +16,7 @@ export default function Track({
       songTitle: songTitle,
       artist: artist,
       album: album,
+      uri: uri,
     });
   };
 

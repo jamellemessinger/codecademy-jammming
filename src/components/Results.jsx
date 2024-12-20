@@ -14,6 +14,7 @@ export default function Results({ results, addToPlaylist }) {
               songTitle={obj.songTitle}
               artist={obj.artist}
               album={obj.album}
+              uri={obj.uri}
               addToPlaylist={addToPlaylist}
               inPlaylist={inPlaylist}
             />

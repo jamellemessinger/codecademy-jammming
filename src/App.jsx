@@ -7,6 +7,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [id, setId] = useState(0);
+  const [uriArr, setUriArr] = useState([]);
 
   const Search = (searchValue) => {
     const filteredResults = [];
@@ -37,13 +38,17 @@ function App() {
     setPlaylist((prev) => prev.filter((item) => item.id !== obj.id));
   };
 
+  const savePlaylist = (arr) => {
+    setUriArr([arr]);
+  };
+
   return (
     <>
       <h1>Jammming</h1>
       <SearchBar onSearch={Search} />
       <div>
         <Results results={results} addToPlaylist={addToPlaylist} />
-        <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} />
+        <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} savePlaylist={savePlaylist} />
       </div>
     </>
   );

@@ -6,10 +6,10 @@ export default function Playlist({
   playlist,
   removeFromPlaylist,
 }) {
-  const [playlistName, setPlaylistName] = useState('');
+  const [playlistName, setPlaylistName] = useState('Playlist 1');
   const inPlaylist = true;
 
-  const handleSubmit = (event) => {
+  const handleOnSubmit = (event) => {
     event.preventDefault();
   };
 
@@ -17,17 +17,21 @@ export default function Playlist({
     setPlaylistName(target.value);
   };
 
-  const handleOnClick = () => {};
+  const handleOnClick = () => {
+    let uriArr = [];
+    playlist.forEach((obj) => uriArr.push(obj.uri));
+    savePlaylist(uriArr);
+  };
 
   return (
     <>
       <p>Playlist</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleOnSubmit}>
         <input
           type="text"
           onChange={handleOnChange}
           value={playlistName}
-          placeholder="Playlist Name"
+          placeholder="Enter a playlist name"
         />
         {playlist.map((obj, index) => (
           <Track
@@ -36,6 +40,7 @@ export default function Playlist({
             songTitle={obj.songTitle}
             artist={obj.artist}
             album={obj.album}
+            uri={obj.uri}
             removeFromPlaylist={removeFromPlaylist}
             inPlaylist={inPlaylist}
           />
