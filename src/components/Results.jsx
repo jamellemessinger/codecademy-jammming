@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import Track from './Track';
 
-export default function Results({ results, createPlaylist }) {
-
+export default function Results({ results, addToPlaylist }) {
+  const inPlaylist = false;
   return (
     <>
       <p>Results</p>
       {results[0] ? (
-        results.map((obj, index) => (
-          <Track
-            key={index}
-            songTitle={obj.songTitle}
-            artist={obj.artist}
-            album={obj.album}
-            onResultClicked={createPlaylist}
-          />
-        ))
+        results.map((obj, index) => {
+          return (
+            <Track
+              key={index}
+              songTitle={obj.songTitle}
+              artist={obj.artist}
+              album={obj.album}
+              addToPlaylist={addToPlaylist}
+              inPlaylist={inPlaylist}
+            />
+          );
+        })
       ) : (
         <p>NO RESULTS FOUND</p>
       )}

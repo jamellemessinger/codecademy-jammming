@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import Track from './Track';
 
-export default function Playlist({ SavePlaylist, playlist }) {
+export default function Playlist({
+  savePlaylist,
+  playlist,
+  removeFromPlaylist,
+}) {
   const [playlistName, setPlaylistName] = useState('');
+  const inPlaylist = true;
 
   const handleSubmit = (event) => {
-    event.preventDefualt();
+    event.preventDefault();
   };
 
   const handleOnChange = ({ target }) => {
@@ -23,16 +28,18 @@ export default function Playlist({ SavePlaylist, playlist }) {
           onChange={handleOnChange}
           value={playlistName}
           placeholder="Playlist Name"
-          required
         />
         {playlist.map((obj, index) => (
-                    <Track
-                      key={index}
-                      songTitle={obj.songTitle}
-                      artist={obj.artist}
-                      album={obj.album}
-                    />
-                  ))}
+          <Track
+            id={obj.id}
+            key={index}
+            songTitle={obj.songTitle}
+            artist={obj.artist}
+            album={obj.album}
+            removeFromPlaylist={removeFromPlaylist}
+            inPlaylist={inPlaylist}
+          />
+        ))}
         <button onClick={handleOnClick}>Save To Spotify</button>
       </form>
     </>

@@ -5,11 +5,11 @@ import { SearchBar, Results, Playlist } from './components';
 
 function App() {
   const [results, setResults] = useState([]);
-  const [playlist, setPlaylist] = useState([])
+  const [playlist, setPlaylist] = useState([]);
+  const [id, setId] = useState(0);
 
   const Search = (searchValue) => {
     const filteredResults = [];
-
     for (let obj of tracks) {
       for (let key in obj) {
         if (
@@ -24,22 +24,26 @@ function App() {
         }
       }
     }
+
     setResults(filteredResults);
   };
 
-  const createPlaylist = (obj) => {
-    setPlaylist((prev) => [...prev, obj])
+  const addToPlaylist = (obj) => {
+    setId(id + 1);
+    setPlaylist((prev) => [...prev, { ...obj, id: id }]);
   };
 
-  console.log(playlist)
+  const removeFromPlaylist = (obj) => {
+    setPlaylist((prev) => prev.filter((item) => item.id !== obj.id));
+  };
 
   return (
     <>
       <h1>Jammming</h1>
       <SearchBar onSearch={Search} />
       <div>
-        <Results results={results} createPlaylist={createPlaylist}/>
-        <Playlist playlist={playlist} />
+        <Results results={results} addToPlaylist={addToPlaylist} />
+        <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} />
       </div>
     </>
   );

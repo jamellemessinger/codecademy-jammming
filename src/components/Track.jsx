@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
 
-export default function Track({ songTitle, artist, album, onResultClicked }) {
-  const handleOnClick = () => {
-    onResultClicked({
+export default function Track({
+  id,
+  songTitle,
+  artist,
+  album,
+  addToPlaylist,
+  removeFromPlaylist,
+  inPlaylist,
+}) {
+  const handleAdd = () => {
+    addToPlaylist({
+      id: id,
       songTitle: songTitle,
       artist: artist,
       album: album,
+    });
+  };
+
+  const handleRemove = () => {
+    removeFromPlaylist({
+      id: id,
     });
   };
 
@@ -19,7 +34,11 @@ export default function Track({ songTitle, artist, album, onResultClicked }) {
           </p>
         </div>
         <div>
-          <button onClick={handleOnClick}>add</button>
+          {inPlaylist ? (
+            <button onClick={handleRemove}>remove</button>
+          ) : (
+            <button onClick={handleAdd}>add</button>
+          )}
         </div>
       </div>
     </>
