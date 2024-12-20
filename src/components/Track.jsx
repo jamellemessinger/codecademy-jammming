@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
-export default function Track({songTitle, artist, album}) {
-  const [inPlaylist, setInPlayList] = useState(false);
-
+export default function Track({ songTitle, artist, album, onResultClicked }) {
   const handleOnClick = () => {
-    inPlaylist ? setInPlayList(false) : setInPlayList(true);
+    onResultClicked({
+      songTitle: songTitle,
+      artist: artist,
+      album: album,
+    });
   };
 
   return (
@@ -12,12 +14,12 @@ export default function Track({songTitle, artist, album}) {
       <div className="track-container">
         <div>
           <p>{songTitle}</p>
-          <p>{artist} | {album}</p>
+          <p>
+            {artist} | {album}
+          </p>
         </div>
         <div>
-          <button onClick={handleOnClick}>
-            {!inPlaylist ? 'add' : 'remove'}
-          </button>
+          <button onClick={handleOnClick}>add</button>
         </div>
       </div>
     </>

@@ -16,7 +16,12 @@ export default function SearchBar({ onSearch }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input onChange={handleOnChange} type="text" value={searchValue} />
+        <input
+          onChange={handleOnChange}
+          type="text"
+          value={searchValue}
+          placeholder="Enter a Song, Artist, or Album to search for"
+        />
         <button>Search</button>
       </form>
     </>

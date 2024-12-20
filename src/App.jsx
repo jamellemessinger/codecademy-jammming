@@ -5,6 +5,7 @@ import { SearchBar, Results, Playlist } from './components';
 
 function App() {
   const [results, setResults] = useState([]);
+  const [playlist, setPlaylist] = useState([])
 
   const Search = (searchValue) => {
     const filteredResults = [];
@@ -25,13 +26,20 @@ function App() {
     }
     setResults(filteredResults);
   };
+
+  const createPlaylist = (obj) => {
+    setPlaylist((prev) => [...prev, obj])
+  };
+
+  console.log(playlist)
+
   return (
     <>
       <h1>Jammming</h1>
       <SearchBar onSearch={Search} />
       <div>
-        <Results results={results} />
-        <Playlist />
+        <Results results={results} createPlaylist={createPlaylist}/>
+        <Playlist playlist={playlist} />
       </div>
     </>
   );
