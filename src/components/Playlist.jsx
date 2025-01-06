@@ -5,12 +5,16 @@ export default function Playlist({
   savePlaylist,
   playlist,
   removeFromPlaylist,
+  clearPlaylist,
 }) {
-  const [playlistName, setPlaylistName] = useState('Playlist 1');
+  const [playlistName, setPlaylistName] = useState('');
   const inPlaylist = true;
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    clearPlaylist();
+    setPlaylistName('');
+    alert(`Playlist ${playlistName} has been saved to Spotify!`);
   };
 
   const handleOnChange = ({ target }) => {
@@ -32,6 +36,7 @@ export default function Playlist({
           onChange={handleOnChange}
           value={playlistName}
           placeholder="Enter a playlist name"
+          required
         />
         {playlist.map((obj, index) => (
           <Track
@@ -45,6 +50,8 @@ export default function Playlist({
             inPlaylist={inPlaylist}
           />
         ))}
+        <br />
+        <br />
         <button onClick={handleOnClick}>Save To Spotify</button>
       </form>
     </>

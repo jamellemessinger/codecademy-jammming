@@ -42,13 +42,22 @@ function App() {
     setUriArr([arr]);
   };
 
+  const clearPlaylist = () => {
+    setPlaylist([]);
+  };
+
   return (
     <>
       <h1>Jammming</h1>
       <SearchBar onSearch={Search} />
       <div>
         <Results results={results} addToPlaylist={addToPlaylist} />
-        <Playlist playlist={playlist} removeFromPlaylist={removeFromPlaylist} savePlaylist={savePlaylist} />
+        <Playlist
+          playlist={playlist}
+          removeFromPlaylist={removeFromPlaylist}
+          savePlaylist={savePlaylist}
+          clearPlaylist={clearPlaylist}
+        />
       </div>
     </>
   );

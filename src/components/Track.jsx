@@ -37,9 +37,13 @@ export default function Track({
         </div>
         <div>
           {inPlaylist ? (
-            <button onClick={handleRemove}>remove</button>
+            <button type="button" onClick={handleRemove}>
+              remove
+            </button>
           ) : (
-            <button onClick={handleAdd}>add</button>
+            <button type="button" onClick={handleAdd}>
+              add
+            </button>
           )}
         </div>
       </div>
