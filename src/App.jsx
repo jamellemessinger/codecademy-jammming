@@ -39,7 +39,7 @@ function App() {
   };
 
   const savePlaylist = (arr) => {
-    setUriArr([arr]);
+    setUriArr(arr);
   };
 
   const clearPlaylist = () => {

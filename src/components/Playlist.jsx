@@ -12,19 +12,16 @@ export default function Playlist({
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    let uriArr = [];
+    playlist.forEach((obj) => uriArr.push(obj.uri));
+    savePlaylist(uriArr);
+    alert(`Playlist ${playlistName} has been saved to Spotify!`);
     clearPlaylist();
     setPlaylistName('');
-    alert(`Playlist ${playlistName} has been saved to Spotify!`);
   };
 
   const handleOnChange = ({ target }) => {
     setPlaylistName(target.value);
-  };
-
-  const handleOnClick = () => {
-    let uriArr = [];
-    playlist.forEach((obj) => uriArr.push(obj.uri));
-    savePlaylist(uriArr);
   };
 
   return (
@@ -52,7 +49,7 @@ export default function Playlist({
         ))}
         <br />
         <br />
-        <button onClick={handleOnClick}>Save To Spotify</button>
+        <button type="submit">Save To Spotify</button>
       </form>
     </>
   );
