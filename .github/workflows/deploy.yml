@@ -1,4 +1,4 @@
-name: Deploy React App Jammming
+name: Deploy React App
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22.12.0 # Use your project's Node.js version
+          node-version: 22 # Use your project's Node.js version
 
       - name: Install dependencies
         run: npm install
