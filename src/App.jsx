@@ -117,7 +117,7 @@ function App() {
       <h1>Jammming</h1>
       {loggedIn ? (
         <>
-          <SearchBar onSearch={search} />
+          <SearchBar search={search} />
           <div>
             <Results results={results} addToPlaylist={addToPlaylist} />
             <Playlist
