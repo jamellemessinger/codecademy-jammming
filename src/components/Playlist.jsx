@@ -5,9 +5,9 @@ export default function Playlist({
   savePlaylist,
   playlist,
   removeFromPlaylist,
-  clearPlaylist,
+  playlistName,
+  setPlaylistName,
 }) {
-  const [playlistName, setPlaylistName] = useState('');
   const inPlaylist = true;
 
   const handleOnSubmit = (event) => {
@@ -15,9 +15,6 @@ export default function Playlist({
     let uriArr = [];
     playlist.forEach((obj) => uriArr.push(obj.uri));
     savePlaylist(uriArr);
-    alert(`Playlist ${playlistName} has been saved to Spotify!`);
-    clearPlaylist();
-    setPlaylistName('');
   };
 
   const handleOnChange = ({ target }) => {
