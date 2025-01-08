@@ -25,33 +25,38 @@ function App() {
     const type = '&type=track';
     const searchRequestUrl = spotifySearchEndpoint + searchValue + type;
 
-    // async code to fetch the search result data from spotify
-    const response = await fetch(searchRequestUrl, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-    });
-    // convert response to json
-    const responseJson = await response.json();
-    // store only the needed data in the response object into 'items'
-    const items = await responseJson.tracks.items;
-
-    // filter response obj with only data that we want to use
-    // create an empty array to store the data we want to filter from the items array
-    let filteredResponse = [];
-    for (const track of items) {
-      // push an object literal of only the data we want to the filteredResponse array
-      filteredResponse.push({
-        songTitle: track.name,
-        artist: track.artists[0].name,
-        album: track.album.name,
-        uri: track.uri,
+    // use try...catch for error handling
+    try {
+      // async code to fetch the search result data from spotify
+      const response = await fetch(searchRequestUrl, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
       });
+      // convert response to json
+      const responseJson = await response.json();
+      // store only the needed data in the response object into 'items'
+      const items = await responseJson.tracks.items;
+
+      // filter response obj with only data that we want to use
+      // create an empty array to store the data we want to filter from the items array
+      let filteredResponse = [];
+      for (const track of items) {
+        // push an object literal of only the data we want to the filteredResponse array
+        filteredResponse.push({
+          songTitle: track.name,
+          artist: track.artists[0].name,
+          album: track.album.name,
+          uri: track.uri,
+        });
+      }
+      // set the results variable to be equal to the filtered response
+      setResults(filteredResponse);
+    } catch (error) {
+      console.error('An error occured while using the search API', error);
     }
-    // set the results variable to be equal to the filtered response
-    setResults(filteredResponse);
   };
 
   // use this function to update the id attribute in order to be able to remove individual tracks from the playlist. This allows us to remove one instance at a time if multiple instances persist at the same time in the playlist.
@@ -62,7 +67,7 @@ function App() {
     setPlaylist((prev) => [...prev, { ...obj, id: id }]);
   };
 
-  // filters the playlist array 
+  // filters the playlist array
   const removeFromPlaylist = (obj) => {
     setPlaylist((prev) => prev.filter((item) => item.id !== obj.id));
   };
