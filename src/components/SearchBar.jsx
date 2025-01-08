@@ -20,7 +20,7 @@ export default function SearchBar({ onSearch }) {
           onChange={handleOnChange}
           type="text"
           value={searchValue}
-          placeholder="Enter a Song, Artist, or Album to search for"
+          placeholder="Enter a Song to Find"
         />
         <button>Search</button>
       </form>
